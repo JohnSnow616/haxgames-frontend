@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="HaxGames | Download the latest games across all platforms" />
+<title>HaxGames | Download Latest Games</title>
+<style>
+  /* Critical CSS - inlined for instant render */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { 
+    background: #000000; 
+    color: white; 
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 75px;
+    background: rgba(13, 13, 18, 0.4);
+    z-index: 9000;
+  }
+  #root {
+    min-height: 100vh;
+  }
+</style>npm run build
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<!-- Preconnect to external resources for faster loading -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://images.unsplash.com" />
+
+<!-- DNS Prefetch for faster domain resolution -->
+<link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+<link rel="dns-prefetch" href="https://images.unsplash.com" />
+<style>
+
+/* ============================================
+   DESIGN SYSTEM
+============================================ */
+:root{
+  --bg:         #0d0d12;
+  --section:    #151520;
+  --card:       #1c1c28;
+  --accent:     #5c4d91;
+  --accent2:    #6b5ca5;
+  --grey:       #9a9ab0;
+  --border:     #242435;
+  --white:      #ffffff;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  cursor:none;
+}
+
+body{
+  font-family:'Inter',sans-serif;
+  background:var(--bg);
+  color:var(--white);
+  overflow-x:hidden;
+}
+
+a{
+  text-decoration:none;
+  color:inherit;
+}
+
+/* ============================================
+   CUSTOM CURSOR
+============================================ */
+.cursor{
+  width:12px;
+  height:12px;
+  background:var(--accent2);
+  border-radius:50%;
+  position:fixed;
+  pointer-events:none;
+  z-index:99999;
+  transform:translate(-50%,-50%);
+  transition:width .2s,height .2s,background .2s;
+}
+.cursor-ring{
+  width:35px;
+  height:35px;
+  border:2px solid rgba(107,92,165,0.5);
+  border-radius:50%;
+  position:fixed;
+  pointer-events:none;
+  z-index:99998;
+  transform:translate(-50%,-50%);
+  transition:all .08s linear;
+}
+.cursor.hover{
+  width:40px;
+  height:40px;
+  background:rgba(92,77,145,0.3);
+}
+
+/* ============================================
+   HEADER
+============================================ */
+header{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  z-index:9000;
+  transition:all .4s ease;
+}
+
+/* Top bar */
+.top-bar{
+  background:var(--section);
+  border-bottom:1px solid var(--border);
+  padding:8px 0;
+  font-size:13px;
+  color:var(--grey);
+}
+.top-bar-inner{
+  width:90%;
+  max-width:1400px;
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.top-bar-left{
+  display:flex;
+  gap:20px;
+  align-items:center;
+}
+.top-bar-left i{
+  color:var(--accent2);
+  margin-right:5px;
+}
+.top-bar-right{
+  display:flex;
+  gap:15px;
+  align-items:center;
+}
+.top-bar-right a{
+  color:var(--grey);
+  transition:.3s;
+  font-size:14px;
+}
+.top-bar-right a:hover{
+  color:var(--white);
+}
+
+/* Main nav */
+.main-nav{
+  background:rgba(13,13,18,0.85);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  padding:0;
+  transition:all .4s ease;
+}
+.main-nav.scrolled{
+  box-shadow:0 10px 40px rgba(0,0,0,0.6);
+}
+.nav-inner{
+  width:90%;
+  max-width:1400px;
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  height:70px;
+}
+
+/* Logo */
+.logo{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.logo-icon{
+  width:42px;
+  height:42px;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  border-radius:10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:20px;
+  animation:logoPulse 3s ease-in-out infinite;
+}
+@keyframes logoPulse{
+  0%,100%{box-shadow:0 0 0 0 rgba(92,77,145,0.4)}
+  50%{box-shadow:0 0 20px 8px rgba(92,77,145,0.2)}
+}
+.logo-text{
+  font-family:'Space Grotesk',sans-serif;
+  font-weight:700;
+  font-size:22px;
+  background:linear-gradient(135deg,#fff,var(--accent2));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+
+/* Nav links */
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:5px;
+  list-style:none;
+}
+.nav-links > li{
+  position:relative;
+}
+.nav-links > li > a{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  padding:8px 15px;
+  color:var(--grey);
+  font-weight:500;
+  font-size:14px;
+  border-radius:8px;
+  transition:all .3s ease;
+}
+.nav-links > li > a:hover{
+  color:var(--white);
+  background:rgba(92,77,145,0.15);
+}
+.nav-links > li > a i{
+  font-size:11px;
+  transition:.3s;
+}
+.nav-links > li:hover > a i{
+  transform:rotate(180deg);
+}
+
+/* Dropdown */
+.dropdown{
+  position:absolute;
+  top:calc(100% + 10px);
+  left:0;
+  background:#1a1a28;
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:10px;
+  min-width:200px;
+  opacity:0;
+  visibility:hidden;
+  transform:translateY(10px);
+  transition:all .3s ease;
+  box-shadow:0 20px 50px rgba(0,0,0,0.5);
+}
+.nav-links > li:hover .dropdown{
+  opacity:1;
+  visibility:visible;
+  transform:translateY(0);
+}
+.dropdown a{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 15px;
+  color:var(--grey);
+  font-size:14px;
+  border-radius:8px;
+  transition:.3s;
+}
+.dropdown a:hover{
+  color:var(--white);
+  background:rgba(92,77,145,0.2);
+}
+.dropdown a i{
+  width:20px;
+  color:var(--accent2);
+}
+
+/* Nav right */
+.nav-right{
+  display:flex;
+  align-items:center;
+  gap:15px;
+}
+.search-btn{
+  width:38px;
+  height:38px;
+  border-radius:8px;
+  background:rgba(92,77,145,0.15);
+  border:1px solid var(--border);
+  color:var(--grey);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:.3s;
+  font-size:15px;
+}
+.search-btn:hover{
+  color:var(--white);
+  background:rgba(92,77,145,0.3);
+  border-color:var(--accent);
+}
+.nav-cta{
+  padding:9px 22px;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  border-radius:8px;
+  font-size:14px;
+  font-weight:600;
+  color:var(--white);
+  transition:.3s;
+  border:1px solid transparent;
+}
+.nav-cta:hover{
+  transform:translateY(-2px);
+  box-shadow:0 8px 25px rgba(92,77,145,0.4);
+}
+
+/* Mobile menu btn */
+.mobile-menu-btn{
+  display:none;
+  flex-direction:column;
+  gap:5px;
+  background:none;
+  border:none;
+  cursor:pointer;
+  padding:5px;
+}
+.mobile-menu-btn span{
+  display:block;
+  width:25px;
+  height:2px;
+  background:var(--grey);
+  border-radius:2px;
+  transition:.3s;
+}
+
+/* Mobile nav */
+.mobile-nav{
+  display:none;
+  position:fixed;
+  top:0;
+  right:-100%;
+  width:280px;
+  height:100vh;
+  background:#151520;
+  border-left:1px solid var(--border);
+  z-index:99999;
+  padding:80px 30px 30px;
+  transition:.4s ease;
+  flex-direction:column;
+  gap:10px;
+}
+.mobile-nav.open{
+  right:0;
+}
+.mobile-nav a{
+  display:block;
+  padding:12px 15px;
+  color:var(--grey);
+  font-size:15px;
+  border-radius:8px;
+  transition:.3s;
+}
+.mobile-nav a:hover{
+  color:var(--white);
+  background:rgba(92,77,145,0.2);
+}
+.mobile-overlay{
+  display:none;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.7);
+  z-index:9998;
+}
+.mobile-overlay.open{
+  display:block;
+}
+.close-mobile{
+  position:absolute;
+  top:25px;
+  right:25px;
+  background:none;
+  border:none;
+  color:var(--grey);
+  font-size:22px;
+  cursor:pointer;
+}
+
+/* ============================================
+   SPACER (push content below fixed header)
+============================================ */
+.header-spacer{
+  height:110px;
+}
+
+/* ============================================
+   TEMP CONTENT (just to see header clearly)
+============================================ */
+.temp-content{
+  width:90%;
+  max-width:1400px;
+  margin:60px auto;
+  text-align:center;
+  color:var(--grey);
+  font-size:18px;
+}
+
+/* RESPONSIVE */
+@media(max-width:1000px){
+  .nav-links{display:none}
+  .nav-cta{display:none}
+  .mobile-menu-btn{display:flex}
+  .top-bar{display:none}
+  .header-spacer{height:70px}
+}
+</style>
+</head>
+<body>
+
+<!-- CUSTOM CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- MOBILE OVERLAY -->
+<div class="mobile-overlay" id="mobileOverlay" onclick="closeMobile()"></div>
+
+<!-- MOBILE NAV -->
+<nav class="mobile-nav" id="mobileNav">
+  <button class="close-mobile" onclick="closeMobile()">
+    <i class="fas fa-times"></i>
+  </button>
+  <a href="#">🏠 Home</a>
+  <a href="#">🎮 NSP Games</a>
+  <a href="#">🕹️ Switch Games</a>
+  <a href="#">🍎 Mac Games</a>
+  <a href="#">💻 PC Games</a>
+  <a href="#">📱 Android Games</a>
+  <a href="#">📰 News</a>
+  <a href="#">⭐ Reviews</a>
+</nav>
+
+<!-- HEADER -->
+<header id="header">
+
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    <div class="top-bar-inner">
+      <div class="top-bar-left">
+        <span><i class="fas fa-gamepad"></i>Premium Game Downloads</span>
+        <span><i class="fas fa-shield-alt"></i>Safe & Verified</span>
+      </div>
+      <div class="top-bar-right">
+        <a href="#"><i class="fab fa-telegram"></i> Telegram</a>
+        <a href="#"><i class="fab fa-discord"></i> Discord</a>
+        <a href="#"><i class="fab fa-youtube"></i> YouTube</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN NAV -->
+  <div class="main-nav" id="mainNav">
+    <div class="nav-inner">
+
+      <!-- LOGO -->
+      <a href="#" class="logo">
+        <div class="logo-icon">🎮</div>
+        <span class="logo-text">HaxGames</span>
+      </a>
+
+      <!-- NAV LINKS -->
+      <ul class="nav-links">
+
+        <li>
+          <a href="#">Home</a>
+        </li>
+
+        <li>
+          <a href="#">Games <i class="fas fa-chevron-down"></i></a>
+          <div class="dropdown">
+            <a href="#"><i class="fas fa-microchip"></i> NSP Games</a>
+            <a href="#"><i class="fas fa-gamepad"></i> Switch Games</a>
+            <a href="#"><i class="fab fa-apple"></i> Mac Games</a>
+            <a href="#"><i class="fas fa-desktop"></i> PC Games</a>
+            <a href="#"><i class="fab fa-android"></i> Android Games</a>
+          </div>
+        </li>
+
+        <li>
+          <a href="#">Categories <i class="fas fa-chevron-down"></i></a>
+          <div class="dropdown">
+            <a href="#"><i class="fas fa-dragon"></i> RPG</a>
+            <a href="#"><i class="fas fa-crosshairs"></i> FPS</a>
+            <a href="#"><i class="fas fa-chess"></i> Strategy</a>
+            <a href="#"><i class="fas fa-ghost"></i> Horror</a>
+            <a href="#"><i class="fas fa-running"></i> Adventure</a>
+            <a href="#"><i class="fas fa-futbol"></i> Sports</a>
+          </div>
+        </li>
+
+        <li>
+          <a href="#">News</a>
+        </li>
+
+        <li>
+          <a href="#">Reviews</a>
+        </li>
+
+      </ul>
+
+      <!-- NAV RIGHT -->
+      <div class="nav-right">
+        <a href="#" class="search-btn">
+          <i class="fas fa-search"></i>
+        </a>
+        <a href="#" class="nav-cta">
+          + Submit Game
+        </a>
+        <button class="mobile-menu-btn" onclick="openMobile()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+</header>
+
+<!-- SPACER -->
+<div class="header-spacer"></div>
+
+<!-- TEMP CONTENT -->
+<div class="temp-content">
+  <p>✅ Header is working. Scroll down to test sticky effect.</p>
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  <p>Keep scrolling...</p>
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  <p>Header should be sticky and blurred now ✅</p>
+</div>
+
+<script>
+// CUSTOM CURSOR
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
+let mouseX=0, mouseY=0;
+let ringX=0, ringY=0;
+
+document.addEventListener('mousemove', e=>{
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+  cursor.style.left = mouseX + 'px';
+  cursor.style.top = mouseY + 'px';
+});
+
+function animateRing(){
+  ringX += (mouseX - ringX) * 0.12;
+  ringY += (mouseY - ringY) * 0.12;
+  ring.style.left = ringX + 'px';
+  ring.style.top = ringY + 'px';
+  requestAnimationFrame(animateRing);
+}
+animateRing();
+
+// CURSOR HOVER
+document.querySelectorAll('a, button').forEach(el=>{
+  el.addEventListener('mouseenter', ()=> cursor.classList.add('hover'));
+  el.addEventListener('mouseleave', ()=> cursor.classList.remove('hover'));
+});
+
+// STICKY HEADER
+window.addEventListener('scroll', ()=>{
+  document.getElementById('mainNav')
+    .classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// MOBILE MENU
+function openMobile(){
+  document.getElementById('mobileNav').classList.add('open');
+  document.getElementById('mobileOverlay').classList.add('open');
+}
+function closeMobile(){
+  document.getElementById('mobileNav').classList.remove('open');
+  document.getElementById('mobileOverlay').classList.remove('open');
+}
+</script>
+
+</body>
+</html>

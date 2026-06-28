@@ -1,0 +1,369 @@
+/* WRAPPER - half screen height, starts below navbar but background extends up */
+.focus-rail-wrapper {
+  position: relative;
+  width: 100%;
+  height: calc(50vh - 75px);
+  overflow: hidden;
+  background: #000000;
+  outline: none;
+  user-select: none;
+  border-bottom: 1px solid rgba(36, 36, 53, 0.6);
+}
+
+/* AMBIENT BACKGROUND - EXTENDS BEHIND NAVBAR */
+.focus-rail-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.focus-rail-bg-inner {
+  position: absolute;
+  inset: 0;
+}
+
+.focus-rail-bg-inner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(40px) saturate(1.5);
+  transform: scale(1.1);
+}
+
+.focus-rail-bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    #000000 0%,
+    rgba(0, 0, 0, 0.6) 50%,
+    transparent 100%
+  );
+}
+
+/* MAIN STAGE */
+.focus-rail-stage {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 5%;
+  gap: 12px;
+}
+
+/* DRAGGABLE TRACK */
+.focus-rail-track {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1200px;
+  cursor: grab;
+  flex: 1;
+  min-height: 0;
+}
+
+.focus-rail-track:active {
+  cursor: grabbing;
+}
+
+/* LANDSCAPE CARD */
+.focus-card {
+  position: absolute;
+
+  /* LANDSCAPE RATIO - 16:9 */
+  width: 380px;
+  height: 214px;
+
+  border-radius: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  background: #1c1c28;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  z-index: 10;
+  cursor: pointer;
+}
+
+.focus-card-center {
+  z-index: 20;
+  box-shadow: 0 30px 80px rgba(92, 77, 145, 0.3),
+              0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.focus-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  display: block;
+}
+
+.focus-card-shine {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.08) 0%,
+    transparent 60%
+  );
+  pointer-events: none;
+  border-radius: 14px;
+}
+
+.focus-card-dark {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.08);
+  pointer-events: none;
+  border-radius: 14px;
+  mix-blend-mode: multiply;
+}
+
+.focus-card-link {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* INFO + CONTROLS ROW */
+.focus-rail-info {
+  width: 100%;
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding: 0 4px;
+  flex-shrink: 0;
+  height: 60px;
+}
+
+/* TEXT - middle column, centered */
+.focus-rail-text {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.focus-rail-text-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.focus-meta {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #6b5ca5;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.focus-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: white;
+  font-family: 'Space Grotesk', sans-serif;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+}
+
+.focus-desc {
+  font-size: 12px;
+  color: #9a9ab0;
+  font-family: 'Inter', sans-serif;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* CONTROLS */
+.focus-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+/* empty left column placeholder */
+.focus-rail-left {
+  display: flex;
+  align-items: center;
+}
+
+.focus-nav-group {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(28, 28, 40, 0.8);
+  border: 1px solid rgba(92, 77, 145, 0.2);
+  border-radius: 50px;
+  padding: 4px;
+  backdrop-filter: blur(10px);
+}
+
+.focus-nav-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: none;
+  border: none;
+  color: #9a9ab0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.focus-nav-btn:hover {
+  background: rgba(92, 77, 145, 0.2);
+  color: white;
+}
+
+.focus-nav-btn:active {
+  transform: scale(0.92);
+}
+
+.focus-counter {
+  font-size: 11px;
+  font-family: 'Space Grotesk', sans-serif;
+  color: #9a9ab0;
+  min-width: 36px;
+  text-align: center;
+}
+
+.focus-explore-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 18px;
+  background: white;
+  color: #0d0d12;
+  border-radius: 50px;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s;
+  font-family: 'Inter', sans-serif;
+}
+
+.focus-explore-btn:hover {
+  transform: scale(1.04);
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.15);
+}
+
+.focus-explore-btn:active {
+  transform: scale(0.96);
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .focus-card {
+    width: 300px;
+    height: 169px;
+  }
+
+  .focus-rail-track {
+    min-height: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .focus-rail-wrapper {
+    height: calc(50vh - 75px);
+    min-height: 400px;
+    max-height: 500px;
+  }
+
+  .focus-rail-stage {
+    padding: 2rem 4%;
+    gap: 1.5rem;
+  }
+
+  .focus-rail-track {
+    width: 100%;
+    max-width: 100%;
+    height: 250px;
+    flex: none;
+  }
+
+  .focus-card {
+    width: 240px;
+    height: 135px;
+  }
+
+  .focus-rail-info {
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+    height: auto;
+  }
+
+  .focus-desc {
+    display: none;
+  }
+
+  .focus-title {
+    font-size: 15px;
+  }
+
+  .focus-meta {
+    font-size: 9px;
+  }
+}
+
+@media (max-width: 480px) {
+  .focus-rail-wrapper {
+    height: calc(50vh - 75px);
+    min-height: 350px;
+    max-height: 450px;
+  }
+
+  .focus-rail-stage {
+    padding: 1.5rem 3%;
+    gap: 1rem;
+  }
+
+  .focus-rail-track {
+    height: 200px;
+  }
+
+  .focus-card {
+    width: 200px;
+    height: 112px;
+  }
+
+  .focus-rail-info {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 0;
+  }
+
+  .focus-controls {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .focus-title {
+    font-size: 14px;
+  }
+
+  .focus-nav-group {
+    width: 100%;
+    justify-content: center;
+  }
+}
