@@ -33,8 +33,11 @@ export default function Home() {
   useEffect(() => {
     async function loadPosts() {
       try {
+        console.log('Fetching posts...')
         setLoading(true)
         const { posts } = await fetchPosts(8, 1)
+        
+        console.log('Posts fetched:', posts.length)
         
         const transformedPosts = posts.map((post) => ({
           id: post.id,
@@ -47,6 +50,7 @@ export default function Home() {
         }))
         
         setPopularGames(transformedPosts)
+        setError(null)
         setLoading(false)
       } catch (err) {
         console.error('Error fetching posts:', err)
@@ -72,9 +76,14 @@ export default function Home() {
         background: '#000000',
         color: '#ff4444',
         fontFamily: 'Space Grotesk, sans-serif',
-        fontSize: '18px'
+        fontSize: '18px',
+        padding: '20px'
       }}>
-        Error: {error}
+        <div>
+          <h1>Error Loading Posts</h1>
+          <p>{error}</p>
+          <p>WordPress URL: {process.env.NEXT_PUBLIC_WORDPRESS_URL}</p>
+        </div>
       </div>
     )
   }
@@ -111,12 +120,14 @@ export default function Home() {
           </h1>
         </div>
 
-        <FocusRail
-          items={popularGames}
-          loop={true}
-          autoPlay={true}
-          interval={5000}
-        />
+        {popularGames.length > 0 && (
+          <FocusRail
+            items={popularGames}
+            loop={true}
+            autoPlay={true}
+            interval={5000}
+          />
+        )}
       </div>
 
       <CategoriesSection />
