@@ -1,0 +1,7 @@
+{
+  "buildCommand": "next build",
+  "outputDirectory": ".next",
+  "env": {
+    "NEXT_PUBLIC_WORDPRESS_URL": "@next_public_wordpress_url"
+  }
+}
